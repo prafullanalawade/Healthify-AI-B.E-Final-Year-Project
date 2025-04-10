@@ -14,7 +14,7 @@ def get_nearby_locations(current_location, radius=1000):
         places_list_or_error: A list of nearby places or an error message.
     """
     # Step 1: Get the coordinates of the current location using Nominatim
-    nominatim_url = "https://nominatim.openstreetmap.org/search"
+    nominatim_url = "nominatim_url"
     params = {
         'q': current_location,
         'format': 'json',
@@ -35,7 +35,7 @@ def get_nearby_locations(current_location, radius=1000):
         return f"Error: Unable to connect to Nominatim API ({e}).", None
 
     # Step 2: Search for nearby clinics, doctors, and hospitals using Overpass API
-    overpass_url = "http://overpass-api.de/api/interpreter"
+    overpass_url = "overpass_url"
     query = f"""
     [out:json];
     (
@@ -72,35 +72,14 @@ def get_nearby_locations(current_location, radius=1000):
 
         lat, lon = element['lat'], element['lon']
 
-        # Fetch additional details using Practo API
-        practo_api_key = "your_practo_api_key"  # Replace with your Practo API key
-        practo_url = "https://www.practo.com/api/v1/doctors"
-        practo_params = {
-            "location": current_location,
-            "radius": radius,
-            "api_key": practo_api_key
-        }
-        
-        try:
-            practo_response = requests.get(practo_url, params=practo_params)
-            if practo_response.status_code == 200:
-                practo_data = practo_response.json()
-                if practo_data and 'doctors' in practo_data:
-                    doctor_info = practo_data['doctors'][0]  # Taking the first available doctor
-                    contact = doctor_info.get('phone', contact)
-                    appointment_link = doctor_info.get('booking_url', '#')
-                else:
-                    appointment_link = '#'
-            else:
-                appointment_link = '#'
-        except Exception as e:
-            appointment_link = '#'
+       
+       
 
         places.append({
             'name': name,
             'address': address,
             'contact': contact,
-            'appointment_link': appointment_link
+            
         })
         # Add marker to the map
         folium.Marker(

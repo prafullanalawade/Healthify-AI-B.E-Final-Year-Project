@@ -59,7 +59,7 @@ def check_login(email, password):
 
 def send_email(recipient_email, subject, body):
     sender_email = "healthify605@gmail.com"
-    sender_password = "kgjm orbe jwrx ncxx"
+    sender_password = "Email_App_Password"
 
 
     msg = MIMEMultipart()

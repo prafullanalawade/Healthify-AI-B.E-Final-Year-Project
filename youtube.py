@@ -3,8 +3,8 @@ import requests
 
 # Function to fetch YouTube videos
 def fetch_youtube_videos(query):
-    API_KEY = "AIzaSyD_E43dxIrj7M9pVtBrs3z3erbKlnnJqcY"  # Replace with your actual API Key
-    BASE_URL = "https://www.googleapis.com/youtube/v3/search"
+    API_KEY = ""  # Replace with your actual API Key
+    BASE_URL = ""
 
     params = {
         "part": "snippet",
